@@ -1,46 +1,59 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Welcome to the Machine</title>
-<style>
-    html, body {
-		height: 100%; margin:0; padding:0;
-	}
-        
-    #tablorini {
-        text-align: center;
-        display:block;
-        width:100%;
-        height: 100%;
-        margin:0;
-        padding:0;
-    }
-    #tablorini tbody{width:100%; height: 100%; display:block;}
-    #tablorini tr{
-        width:100%; display:table; height:33% !important; 
-    }
-    #tablorini tr td{
-        width:33%; display:table-cell; vertical-align: middle; font-size:24px; 
-    }
-</style>
 </head>
-<body>
-      <table ID="tablorini">
+
+<body bgcolor="#424242">
+    <style>
+        #tablorini{
+            position: absolute;
+            left: 40%;
+            top: 25%;
+         }
+        </style>
+    <form>
+        <table id="tablorini">
+         <tr>
+            <td>
+                <label for="Name">Name:</label>
+            </td>
+            <td>
+        <input 
+            type="text" 
+            name="Name" 
+            placeholder="Name and Surname" />
+            </td>
+        </tr>
             <tr>
-                <td>A</td>
-                <td>B</td>
-                <td>C</td>
+            <td>
+                <label for="Password"> Password:</label>
+            </td>
+            <td>
+                <input 
+                    type="text"
+                    name="Password"
+                    placeholder="Student ID#" />
+            </td>
+            </tr> 
             <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
+            <td>
+                <label for="Email">Email:</label>
+            </td>
+            <td>
+                <input 
+                    type="text"
+                    name="Email"
+                    placeholder="Email" />
+            </td>
+            </tr>   
+            <tr>
+            <td colspan="2" style="text-align: center">
+            <input type="submit" value="submit"/>
+            </td>
             </tr>
-            <tr>
-                <td>X</td>
-                <td>Y</td>
-                <td>Z</td>
-            </tr>
-      </table>
-     
+        </table>
+    </form>
 </body>
 </html>
