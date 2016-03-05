@@ -9,7 +9,7 @@
     <style>
         #tablorini{
             position: absolute;
-            left: 40%;
+            left: 35%;
             top: 25%;
          }
         </style>
@@ -17,7 +17,7 @@
         <table id="tablorini">
          <tr>
             <td>
-                <label for="Name">Name:</label>
+                <label for="Name">Name</label>
             </td>
             <td>
         <input 
@@ -28,7 +28,7 @@
         </tr>
             <tr>
             <td>
-                <label for="Password"> Password:</label>
+                <label for="Password"> Password</label>
             </td>
             <td>
                 <input 
@@ -45,12 +45,23 @@
                 <input 
                     type="text"
                     name="Email"
-                    placeholder="Email" />
+                    placeholder="Email Address" />
             </td>
-            </tr>   
+            </tr> 
+            <tr>
+                <td>
+                    <label for="FavoriteHobby">Favorite Hobby</label>
+                    <p></p>
+                    <input type="Radio" name="hobby" /> Reading while drinking coffee
+                    <p></p>
+                    <input type="Radio" name="hobby" /> Listening to music and dancing to it
+                    <p></p>
+                    <input type="Radio" name="hobby" /> Doing sports with your buddies
+                </td>
+            </tr>
             <tr>
             <td colspan="2" style="text-align: center">
-            <input type="submit" value="submit"/>
+            <input type="submit" value="Submit"/>
             </td>
             </tr>
         </table>
