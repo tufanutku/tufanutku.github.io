@@ -5,66 +5,64 @@
 <title>Welcome to the Machine</title>
 </head>
 
-<body bgcolor="#424242">
+<body background="background.jpg">
     <style>
+        
         #tablorini{
             position: absolute;
-            left: 35%;
-            top: 25%;
+            left: 40%;
+            top: 20%;
+          }
+         #input {
+             background-color: #5f5757;
+             color: darkred;
+             position: relative;
+             left: 12%;
+             top: 25%;
+             width: 60%
          }
         </style>
     <form>
-        <table id="tablorini">
-         <tr>
-            <td>
-                <label for="Name">Name</label>
-            </td>
-            <td>
-        <input 
+        
+        <div id="tablorini">
+            
+            Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+            <input
+            id="input"
             type="text" 
             name="Name" 
             placeholder="Name and Surname" />
-            </td>
-        </tr>
-            <tr>
-            <td>
-                <label for="Password"> Password</label>
-            </td>
-            <td>
-                <input 
-                    type="text"
+            <p></p>
+            Password
+            <input 
+                    id="input"
+                    type="password"
                     name="Password"
                     placeholder="Student ID#" />
-            </td>
-            </tr> 
-            <tr>
-            <td>
-                <label for="Email">Email:</label>
-            </td>
-            <td>
-                <input 
+            <p></p>
+             Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <input 
+                    id="input"
                     type="text"
                     name="Email"
                     placeholder="Email Address" />
-            </td>
-            </tr> 
-            <tr>
-                <td>
-                    <label for="FavoriteHobby">Favorite Hobby</label>
+                    <p></p>
+                    Favorite Hobby?
                     <p></p>
                     <input type="Radio" name="hobby" /> Reading while drinking coffee
                     <p></p>
                     <input type="Radio" name="hobby" /> Listening to music and dancing to it
                     <p></p>
                     <input type="Radio" name="hobby" /> Doing sports with your buddies
-                </td>
-            </tr>
-            <tr>
-            <td colspan="2" style="text-align: center">
+                    <p></p>
+                    <table style="position: relative; left: 50%; top:25%">
+                    <tr>
+                    <td colspan="2" style="text-align: center">
             <input type="submit" value="Submit"/>
             </td>
             </tr>
         </table>
-    </form>
-</body>
+      </div>
+    </form>  
+    </body>
 </html>
