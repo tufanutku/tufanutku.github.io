@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>function calc etc</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script>
+            function factorial(number) {
+       var res=1;
+   
+       for( var i=2; i <=number; i++) {
+   
+       res= res * i;
+         }
+       return res;
+         }
+         
+         function calculate () {
+             var innum = $("#a") .val();
+             var res = factorial(innum);
+             $("b").val(res);
+           }
+                 
+    
+       </script>
+    </head>
+    <body>
+        <style>
+            #div {
+                vertical-align: middle;
+                height: 400px;
+                width: 400px;
+                left: 45%;
+                position: absolute;
+                top: 45%;
+                background-color: red;
+            }
+            </style>
+            
+        <div id="div">
+            <form>
+            <input id="a" type="text" placeholder="Enter Number Here" />
+            <br/>
+            <input type="submit" value="Calculate" onclick="calculate();"/>
+            <br/>
+            <input id="b" type="text" placeholder="Result"/>
+            </form>
+        </div>
+    </body>
+</html>
