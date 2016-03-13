@@ -10,46 +10,50 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script>
-            function factorial(number) {
-       var res=1;
-   
-       for( var i=2; i <=number; i++) {
-   
-       res= res * i;
-         }
-       return res;
-         }
-         
-         function calculate () {
-             var innum = $("#a") .val();
-             var res = factorial(innum);
-             $("b").val(res);
-           }
-                 
-    
+        <script> 
+            function calculatesqr() {
+                 var sqr_input = $('#num').val();
+                 var sq_res = rootyrooty(sqr_input);
+                 $('#sqr').val(sq_res);
+             }
+             function rootyrooty (num) {
+                 var  sqr = Math.sqrt(num);
+                 return sqr;
+             }
        </script>
     </head>
-    <body>
+    <body background="background.jpg">
         <style>
             #div {
                 vertical-align: middle;
-                height: 400px;
-                width: 400px;
-                left: 45%;
+                height: 250px;
+                width: 250px;
+                left: 40%;
                 position: absolute;
-                top: 45%;
-                background-color: red;
+                top: 20%;
+                background-color: #515A5A;
+                color: seagreen;
+                padding: 3%;
+                border-color: black;
+                border-radius: 20px;
+                border-style: groove;
+                opacity: 0.9;
+                text-align: center
+                
             }
             </style>
-            
-        <div id="div">
+         
+    <div id="div">
+            <h2>Square Root-O-Meter</h2>
             <form>
-            <input id="a" type="text" placeholder="Enter Number Here" />
             <br/>
-            <input type="submit" value="Calculate" onclick="calculate();"/>
-            <br/>
-            <input id="b" type="text" placeholder="Result"/>
+            <input id="num" type="text" placeholder="Number Here" />
+            <p></p>
+            <input type="button" value="Square" onclick="calculatesqr ();"/> 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" value="Clear" onclick="this.form.reset()"/>
+            <p></p>
+            <input id="sqr" type="text" placeholder="Result"/>
             </form>
         </div>
     </body>
