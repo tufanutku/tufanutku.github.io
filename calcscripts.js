@@ -1,8 +1,8 @@
  var i = 1;
             
             function calculate() {
-                var in1 = parseInt($('#inp1').val());
-                var in2 = parseInt($('#inp2').val());
+                var in1 = Number($('#inp1').val());
+                var in2 = Number($('#inp2').val());
                 if(checkInp(in1,in2)) {
                     var res = eval(in1 + $('#list').val() + in2);
                     $('#output').val(res);
