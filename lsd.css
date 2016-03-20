@@ -1,0 +1,19 @@
+body{background-color: blue;
+     animation: image 1.5s infinite alternate;
+	 -webkit-animation: image 1.5s infinite alternate;
+	 -moz-animation: image 1.5s infinite alternate;
+	 }
+@keyframes image{
+	0% {
+		background-color: #BCBDAC;}
+    20% {
+		background-color: #CFBE27;}
+	40% {
+		background-color: #3B2D38;}
+    60% {
+		background-color: #F02475}
+	80% {
+		background-color: #93FF28;}
+	100% {
+		background-color: #270436;}
+}
