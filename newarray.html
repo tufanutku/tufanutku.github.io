@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New Array</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    </head>
+    <body style="background-color:#424242">
+        <style>
+        </style>
+        <div id="idiv">
+            <h2 id="h2">Lol ve Lel</h2>
+            <p id="lel"></p>
+    </div>
+        <script>
+        var obj = {"name":"Tufan","height":170,"weight":70,"age":19,"sex":"Male"};
+                $("#lel")[0].innerHTML = 
+                obj.name + "<br>" +
+                obj.age + "<br>" +
+                obj.sex + "<br>" +
+                obj.height + "<br>" +
+                obj.weight;
+        
+        var rat = calcRatio(obj.height, obj.weight);
+        $('#idiv').append("height weight ratio:" + rat);
+        function calcRatio(height,weight) {
+            return height/weight;
+        }
+        </script>
+     </body>
+</html>
