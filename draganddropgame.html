@@ -1,0 +1,48 @@
+
+<html>
+    <head>
+        <title>Game'o'rino</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+        <style>
+            #target {
+                position: absolute;
+                height: 400px;
+                width: 400px;
+                left: 30%;
+                top: 30%;
+                background-color:#424242;
+                border: solid;
+                border-width: 5px;
+                border-color: black;
+            }
+            #arrow {
+                background-color: red;
+                height: 80px;
+                width: 80px;
+            }
+        </style>
+        
+        <script>
+            
+            $('document').ready(function(){
+               $('#arrow').draggable(); 
+               $('#target').droppable({
+                       drop: function(){ 
+                           $('#target').css('background-color',"black");
+                       }
+    });
+  });
+            </script>
+    </head>
+<body>
+        <div id='target'></div>
+        <div id='arrow'></div>
+        
+        
+        
+    </body>
+    
+</html>
