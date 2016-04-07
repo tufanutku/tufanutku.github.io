@@ -31,3 +31,11 @@
             $(this).css("background-color","");
         }
 		);
+		 $('#russia').hover(
+            function() {
+            $(this).css('background-color',"#515A5A"); 
+        }, 
+            function(){
+            $(this).css("background-color","");
+        }
+		);
