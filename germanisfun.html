@@ -1,196 +1,143 @@
 <!DOCTYPE html>
 <html>
     <head>  
-        <title>Game </title>
+        <title>Game 1</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-        </head>
-    <body background="kidswallpaper.jpg">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
         <style>
-            
             ul {
                 list-style-type: none;
             }
             #order {
                 display: none;
             }
-             #Names {
-                border-style: groove;
-                border-width: 8px;
-                border-top-color: yellow;
-                border-bottom-color: yellow;
-                border-left-color: darkgreen;
-                border-right-color: darkgreen; 
-                font-size: 19px;
-                color: indigo;
-                font-family: fantasy;
-                font-synthesis: style;
-                
-            }
-            #numbers {
-                border-style: groove;
-                border-width: 8px;
-                border-top-color: yellow;
-                border-bottom-color: yellow;
-                border-left-color: darkgreen;
-                border-right-color: darkgreen; 
-                font-size: 19px;
-                color: lightseagreen;
-                font-family: fantasy;
-                font-synthesis: style;
-            }
-            #p1 {
-                color: darkred;
-                font-size: 17px;
-                font-family: fantasy;
-                font-stretch: ultra-expanded;
-                text-align: center;
-            }
-            #p2 {
-                color: darkred;
-                font-size: 17px;
-                font-family: fantasy;
-                font-stretch: ultra-expanded;
-                text-align: center;
-            }
-            #popUpBackground {
-                position: fixed;
-                margin:0;
-                padding:0;
-                height: 900px;
-                width:100%;
-                top:0;
-                left:0;
-                background-color: lightgreen;
-                opacity: 0.8;
-                z-index: 1000;
-                cursor: pointer;
-                display: none;
-            }
-            #popUpBox {
-                position: absolute;
-                margin: 10px 0 0 35%;
-                padding: 20px;
-                background-color: white;
-                width: 10%;
-                z-index: 1500;
-                border:solid;
-                border-width: 4px;
-                border-color: #424242;
-                display: none;
-            }
         </style>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js.cookie.js"></script>
+        <script type="text/javascript" src="NumberGame.js"></script>
+        <script>
+            var reset = function () {
+                Cookies.remove("numbers");
+                Cookies.remove("numCorrect");
+                window.location.reload();
+            }
+        </script>
+    </head>
+    <body>  
+        <div>
 
-        <p id="p1">1)Match the Numbers with German Names</p> 
-        <p id="p2">2)Order these names correctly</p>
-        <div id="Names">
-            <ul id="numName"></ul>
+                        <ul id="numName"></ul>
+                        <ul id="numNumeric"></ul>
+                        <ul id="order"></ul>
+                        <button id="reset" onclick="reset();">Reset</button>
+                        <input type="text" id="timeleft" disabled/>
+                        <input type="text" id="score" disabled/>   
         </div>
-        <div id="numbers">
-            <ul id="numNumeric"></ul>
-        </div>
-        <div id="0rder">
-            <ul id="order"></ul>
-        </div>    
-    <div id="popUpBackground"></div>
-    <div id="popUpBox">
-        
-        Congratulations!
-        <span id="close" style="float: right">&times;</span> </br>
-        Glückwünsche! 
-    </div>      
-    <script>
-        
-            $('#p2').hide();
-            var numText = ['Null', 'Eins', 'Zwei', 'Drei', 'Vier', 'Fünf', 'Sechs', 'Sieben', 'Acht', 'Neun', 'Zehn'];
-            //var numText = ['Null', 'Eins'];
-            var ulText = $('#numName');
-            var ulNum = $('#numNumeric');
-            var dimx = $('body').width();
-            var dimy = $('body').height();
-            for(var i = 0; i < numText.length; i++){
-                ulText.append('<li id="t' + (i) + '">' + numText[i] + '</li>');
-                ulNum.append('<li id="n' + (i) + '">' + (i) + '</li>');
-            }
-            var hidden = 0;
-            for(var i = 0; i < numText.length; i++){
-                $("#n" + i).data("index", {index: i});
-                $("#t" + i).data("index", {index: i});
-                $("#n" + i).draggable({
-                   cursor: "move" 
-                });
-                        //.css("color", "red")
-                        //.css("border", "grove")
-                        //.css("border-top-color","yellow")
-                        //.css("border-bottom-color","yellow")
-                        //.css("border-left-color","green")
-                        //.css("border-right-color","green")
-                        //.css("border-width","5px");
-                $("#t" + i).droppable({drop: function (event, ui) {
-                    var ni = ui.draggable.attr("id");
-                    var ti = this.id;
-                    var niElem = $('#' + ni);
-                    var tiElem = $('#' + ti);
-                    if(niElem.data("index").index === tiElem.data("index").index){
-                        //correct
-                        niElem.draggable("disable");
-                        niElem.css("display", "none");
-                        hidden++;
-                        
-                        if(hidden === numText.length){
-                            $('ul').randomize();
-                            $('#numbers').css("display","none");
-                            $('#p1').hide();
-                            $('#p2').show();
-                            $('#numName').sortable({
-                                start: function(event, ui){
-                                },
-                                update: function(event, ui){
-                                    var ordered = 0;
-                                    for(var j = 0; j < numText.length; j++){
-                                        if($('#t' + j).index() === j)
-                                            ordered++;
-                                    }
-                                    if(ordered === numText)
-                                    $('#popUpBackground').css("display","compact");
-                                    $('#popUpBackground').fadeIn(); 
-                                    $('#popUpBox').fadeIn(); 
-                                    $('#popUpBackground').click(function () {
-                                    $('#popUpBackground').fadeOut(); 
-                                    $('#popUpBox').fadeOut(); });
-                                    $('#close').click(function () {
-                                    $('#popUpBackground').fadeOut(); 
-                                    $('#popUpBox').fadeOut(); 
-                                });
-                                }
-                            });
-                        }
-                    } else{
-                        //wrong
-                        var left = Math.floor((Math.random() * (dimx - 20)) + 10);
-                        var top = Math.floor((Math.random() * (dimy - 20)) + 10);
-                        niElem.css("left", left+"px"); 
-                        niElem.css("top", top+"px");
-                        niElem.css("color","black");
-                        niElem.css("font-size","30px");
-                    }
-                            
-                }});
-            }
+            <script type="text/javascript">
+            $('document').ready(function () {
+                var numCookie = Cookies.getJSON('numbers');
+                var numCorrect = Cookies.get('numCorrect');
+                var numbers = new Numbers(numCookie, numCorrect);
+                console.log(numbers);
+                numbers.initGame;
+                $('ul').randomize();
+            });
+
+//            var numText = ['null', 'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn'];
+//            //var numText = ['null', 'eins', 'zwei'];
+//            var numbers = [];
+//            var ulText = $('#numName');
+//            var ulNum = $('#numNumeric');
+//            var dimx = $('body').width();
+//            var dimy = $('body').height();
+//            var numbersCookie = Cookies.getJSON('numbers');
+//            if (numbersCookie == null) {
+//                for (var i = 0; i < numText.length; i++) {
+//                    var number = {
+//                        word: numText[i],
+//                        digit: i,
+//                        score: 0,
+//                        placed : false
+//                    };
+//                    numbers.push(number);
+//                }
+//            } else {
+//                numbers = numbersCookie;
+//            }
+//            var hidden = 0;
+//            for (var i = 0; i < numbers.length; i++) {
+//                ulText.append('<li id="t' + numbers[i].digit + '">' + numbers[i].word + '</li>');
+//                ulNum.append('<li id="n' + numbers[i].digit + '">' + numbers[i].digit + '</li>');
+//                if(numbers[i].placed){
+//                    $("#n" + i).hide();
+//                    hidden++;
+//                }
+//            }
+//
+//            
+//            for (var i = 0; i < numText.length; i++) {
+//
+//                $("#n" + i).data("index", {index: i});
+//                $("#t" + i).data("index", {index: i});
+//                $("#n" + i).draggable();
+//                $("#t" + i).droppable({drop: function (event, ui) {
+//                    var ni = ui.draggable.attr("id");
+//                    var ti = this.id;
+//                    var niElem = $('#' + ni);
+//                    var tiElem = $('#' + ti);
+//                    if (niElem.data("index").index === tiElem.data("index").index) {
+//                        //correct
+//                        niElem.draggable("disable");
+//                        niElem.css("display", "none");
+//                        numbers[niElem.data("index").index].placed = true;
+//                        hidden++;
+//                        if (hidden === numText.length) {
+//                            $('ul').randomize();
+//                            $('#numName').sortable({
+//                                start: function (event, ui) {
+//                                },
+//                                update: function (event, ui) {
+//                                    var ordered = 0;
+//                                    for (var j = 0; j < numText.length; j++) {
+//                                        if ($('#t' + j).index() == j)
+//                                            ordered++;
+//                                    }
+//                                    if (ordered == numText.length)
+//                                        alert("done");
+//                                }
+//                            });
+//
+//                        }
+//                    } else {
+//                        //wrong
+//                        var left = Math.floor((Math.random() * (dimx - 20)) + 10);
+//                        var top = Math.floor((Math.random() * (dimy - 20)) + 10);
+//                        niElem.css("left", left + "px");
+//                        niElem.css("top", top + "px");
+//                        numbers[niElem.data("index").index].score++;
+//                        var score = numbers[niElem.data("index").index].score
+//                        if (score > 1)
+//                            alert("Come on. Try harder. You were mistaken " + score + " times");
+//                    }
+//                    Cookies.set('numbers', numbers, {expires: 128});
+//                }});
+//            }
+//            
             $.fn.randomize = function (selector) {
                 var $elems = selector ? $(this).find(selector) : $(this).children(),
                         $parents = $elems.parent();
+
                 $parents.each(function () {
                     $(this).children(selector).sort(function () {
                         return Math.round(Math.random()) - 0.5;
-                        // }). remove().appendTo(this); // 2014-05-24: Removed `random` but leaving for reference. See notes under 'ANOTHER EDIT'
                     }).detach().appendTo(this);
                 });
+
                 return this;
             };
-            $('ul').randomize();
-    </script>
+
+
+        </script>        
     </body>
 </html>
