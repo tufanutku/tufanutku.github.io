@@ -1,8 +1,9 @@
 var numText = ['null', 'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn'];
+//var numText = ['null', 'eins', 'zwei'];
 var numbers = [];
 var numCorrect = 0;
+var time = null;
 var timeLeft = 45;
-var time =null;
 var correct=0;
 var wrong=0;
 var final=0;
@@ -54,10 +55,10 @@ function countdown(){
 }
 
 function startInterval(){
-    time =setInterval("countdown()",1000);
+   time = setInterval("countdown()",1000);
 }
 
-function stopInterval(){
+function stopInterval(time){
     clearInterval(time);
 }
 
@@ -84,9 +85,7 @@ function checkPlacement(event, ui, ti) {
         numbers[niElem.data("index").index].placed = true;
         numCorrect++;
         if(numCorrect === 11){
-            stopInterval();
-            final = (parseInt(correct+1)*5)+(parseInt(wrong)*1)+parseInt(secLeft);
-            $("#score").val("Your final score is "+parseInt(final));
+            
         }
         checkPlacementStatus();
         correct++;
@@ -125,12 +124,16 @@ function initSorting() {
                 if ($('#t' + j).index() == j)
                     ordered++;
             }
-            if (ordered == numText.length)
-                alert("done");
+            if (ordered == numText.length){
+                stopInterval(time);
+                score();
+                //alert("Score:"+ final+"");
+            }
         }
     });
 }
-
-function checkGameStatus(){
+function score(){
+    final = numCorrect*5 + wrong + timeLeft;
+    $('#score').val(final);
     
 }
