@@ -25,12 +25,25 @@ var aminoAcids =
 ;
 var nucleotides = ['U','A','G','C'];
 var correct = [];
+var wrong = [];
+var numberOfShuffle = [];
 
 function handleDrop(aminoAcidConstruct, templateConstruct) {
-    if  (data('codon').codon === data('anticodon').anticodon){
-        console.log("1");
-        $('this').draggable('disable').attr('class', 'done');
+     var droppableId = $(this).attr("id");
+     var dragged = $(event.target).attr("id")
+    if  (droppableId == dragged){
+        console.log(event.target.id);
+        console.log(droppableId);
+        $(event.target).draggable('disable').attr('class', 'done').attr('position','absolute');
         correct++;
+       // if(correct == 8 ) {
+       //     alert('Correct:' +correct + '</br> Wrong:'+wrong+ '</br> Shuffle:'+numberOfShuffle);
+        //}
+    }else{
+        $('#error').append('No');
+        console.log(event.target.id);
+        console.log(droppableId);
+        wrong++;      
     }   
 }
 
@@ -41,10 +54,6 @@ function templateConstruct() {
             codon += (nucleotides[parseInt(Math.random()*4)]);
         } 
         $('#template').append("<div id='" + codon + "' class='codon'>" + codon + "</div>")
-                .droppable({ 
-                    drop: handleDrop
-            })
-                    .data('codon', +codon);
     }
     $('#Start').attr("disabled", true);
     $('#Start').attr("value","Initiated!");
@@ -56,19 +65,23 @@ function aminoAcidConstruct(cbf) {
         var anticodon = "";
         for(var i=0; i < 3; i++) {anticodon += (nucleotides[parseInt(Math.random()*4)]);
         }
-        $('#store').append("<div id='" + anticodon + "' class='aa ui-draggable'>" + aminoAcids[anticodon] + " (" + anticodon + ")</div>")
-                .attr("display","inline-block").data('anticodon', "+codon");
+        $('#store').append("<div id='" + anticodon + "' class='aa'>" + aminoAcids[anticodon] + " (" + anticodon + ")</div>")
+                .attr("display","inline-block").data('anticodon', +anticodon);
     }
     cbf();
     
 }
 function setDraggable(){
     $('.aa').draggable();
+    $('.codon').droppable({ 
+                    drop: handleDrop
+            });
 }
 
 
 
 function shuffle () {
     $('.aa').remove();
+    numberOfShuffle++;
    aminoAcidConstruct(setDraggable);
 }
