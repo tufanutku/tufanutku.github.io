@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+        <script src="projectcodes.js"></script>
+    <title>Transcription</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <style>
+            .codon {
+            size: 30px;
+            width: 70px;
+            height: 20px;
+            background: yellowgreen;
+            padding: 5px;
+            border: 1px solid black;
+            display: inline-block;
+            text-align: center;
+            }
+            #Game {
+                position: absolute;
+                top: 10%;
+                left:30%;
+            }
+            #template {
+                border: 1px solid black;
+                height: 32px;
+                width: 656px;
+            }
+            .aa {
+                background: #eee;
+                border: 1px solid black;
+                color:red;
+                display: inline-block;
+                margin: 1px;
+            }
+            #store {
+                position: absolute;
+                top: 35%;
+                left: 5%;
+            }
+            .done {
+                background: #eee;
+                border: 1px solid black;
+                color:red;
+                display: inline-block;
+                margin: 1px;
+                opacity: 0.5;
+                background: blue;
+                position: absolute;
+            }
+        </style>
+        <div>
+            <input type="submit" id="Start" 
+                   value="Initiate Transcription!"  onclick="templateConstruct();" /><p></p>
+            <input type="submit" id="Shuffle"
+                   value="Shuffle" onclick="shuffle();" disabled/>
+        </div>
+        <div id="Game">
+        <h1>RNA TEMPLATE</h1>
+        <div id="template"></div>
+        </div>
+    <div id="store"></div>
+    <p id="error"></p>
+    </body>
+</html>
