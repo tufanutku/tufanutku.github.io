@@ -34,6 +34,10 @@ function setCookie() {
     document.cookie = "finalTime2=" + document.getElementById("timeleft2").value;
 }
 
+var deleteCookie = function(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
+
 function handleDrop2(aminoAcidConstruct2, templateConstruct2) {
      var droppableId = $(this).attr("id");
      var dragged = $(event.target).attr("id");
@@ -69,6 +73,7 @@ function countdown2(){
 
 function templateConstruct2() {
     startInterval2();
+    deleteCookie('finalTime2');
     for (var o=0; o < 8; o++){
         for(var i=0; i < 64; i++) {
            var codon = (aminoAcids[parseInt(Math.random()*64)]);
